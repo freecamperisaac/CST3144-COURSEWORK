@@ -67,6 +67,19 @@
             </div>
         </div>
 
+<!-- Order Summary Section -->
+<div v-if="showSummary" class="summary">
+    <h2>Order Summary</h2>
+    <p><strong>First Name:</strong> {{ order.firstName }}</p>
+    <p><strong>Last Name:</strong> {{ order.lastName }}</p>
+    <p><strong>Phone Number:</strong> {{ order.phoneNumber }}</p>
+    <p><strong>Address:</strong> {{ order.address }}</p>
+    <p><strong>Town:</strong> {{ order.Town }}</p>
+    <p><strong>Emirate:</strong> {{ emirates[order.emirate] }}</p>
+    <p><strong>Zip/Postal Code:</strong> {{ order.zip }}</p>
+    <p><strong>Gift Option:</strong> {{ order.gift ? "Yes" : "No" }}</p>
+    <button class="return-home" @click="goHome">Return to Home</button>
+</div>
 
     </main>
 
