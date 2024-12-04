@@ -48,7 +48,6 @@
     border: 1px solid #ccc;
     padding: 10px;
     text-align: center;
-  
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,4 +83,290 @@
     color: lightgreen;
   }
     
+  
+
+/* Checkout Button */
+.checkout-button {
+    background-color: green;
+    color: white;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  /* Course and Cart Grid */
+  .course-grid,
+  .cart-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .course-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+  
+  /* Checkout Form */
+  .checkout-form {
+    display: grid;
+    gap: 15px;
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  .checkout-form label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .checkout-form button {
+    padding: 10px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .checkout-form button:disabled {
+    background: gray;
+    cursor: not-allowed;
+  }
+  
+  .checkout-confirm {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    display: block;
+    width: 70%;
+  }
+  
+  /* Add to Cart Button */
+  .add-to-cart {
+    background-color: lightgreen;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .add-to-cart.clicked {
+    background-color: yellow;
+    color: black;
+  }
+  
+  .add-to-cart:hover {
+    background-color: #0056b3;
+  }
+  
+  .course-grid .course-item figure {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .course-grid .course-item .course-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .cart-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .cart-item {
+    background-color: #e0f7fa;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .add-to-cart:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .error {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .rating .star.filled {
+    color: gold;
+  }
+  
+  .rating .star.unfilled {
+    color: #ccc;
+  }
+  /* Updated Styles */
+  
+  .summary {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .return-home {
+    margin-top: 15px;
+    background-color: #3b5998;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  #toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f59221;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0.9;
+    animation: fadeInOut 3s;
+  }
+  
+  @keyframes fadeInOut {
+    0%,
+    100% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    10%,
+    90% {
+      opacity: 0.9;
+      transform: translateY(0);
+    }
+  }
+  
+  .cart-item {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  
+  .cart-item-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .remove-item {
+    
+    color: rgb(9, 6, 6);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .remove-item:hover {
+    background-color: darkred;
+  }
+  
+  .checkout-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .checkout-layout {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .order-summary {
+    flex: 1;
+    border-right: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .order-details {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  .cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .cart-item-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+  }
+  
+  .cart-item-details {
+    margin-left: 10px;
+  }
+  
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+  }
+  
+  .quantity-controls button {
+    padding: 5px;
+    margin: 0 5px;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+  }
+  
+  .checkout-form input,
+  .checkout-form select {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+  }
+  
+  input:focus,
+  select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    outline: none;
+  }
+  
+  input[type="checkbox"] {
+    margin-right: 8px;
+  }
   
