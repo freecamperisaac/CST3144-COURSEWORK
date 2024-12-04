@@ -113,7 +113,62 @@
             </div>
             <h3>Total Price: {{ totalPrice.toFixed(2) }} AED</h3>
         </div>
+ <!-- Right: Customer Information Form -->
+ <div class="order-details">
+    <h3>Order Details</h3>
+    <form class="checkout-form">
+        <label>
+            First Name:
+            <input v-model="order.firstName" @input="validateFirstName" />
+        </label>
+        <label>
+            Last Name:
+            <input v-model="order.lastName" @input="validateLastName" />
+        </label>
+        <label>
+            Phone Number:
+            <input v-model="order.phoneNumber" maxlength="10" @input="validatePhoneNumber" />
+        </label>
+        <label>
+            Address:
+            <input v-model="order.address" @input="validateAddress" />
+        </label>
+        <label>
+            Town:
+            <input v-model="order.Town" @input="validateTown" />
+        </label>
+        <label>
+            Emirates:
+            <select v-model="order.emirate">
+                <option disabled value="">Select Emirate</option>
+                <option v-for="(emirate, key) in emirates" :value="key">
+                    {{ emirate }}
+                </option>
+            </select>
+        </label>
+        <label>
+            Zip/Postal Code:
+            <input v-model="order.zip" @input="validateZip" />
+        </label>
+        <label>
+            <input type="checkbox" v-model="order.gift" /> Ship As Gift?
+        </label>
+        <button @click.prevent="submitForm">Place Order</button>
+    </form>
+</div>
+</div>
+</div>
 
+<!-- Toast Container -->
+<div id="toast-container" v-if="toastMessage" class="toast">
+{{ toastMessage }}
+</div>
+</main>
+</div>
+
+<!-- <script src="course.js"></script> -->
+<script src="script.js"></script>
     </main>
 
 </body>
+</html>
