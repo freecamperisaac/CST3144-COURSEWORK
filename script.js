@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000";  // Base URL for API endpoints
+const BASE_URL = "https://cst3144-coursework-backened.onrender.com";  // Base URL for API endpoints
 
 // Vue.js instance
 var webStore = new Vue({
@@ -92,7 +92,7 @@ var webStore = new Vue({
       }
     },
     imageLink(image) {
-      return `http://localhost:3000/images/${image}`;
+      return `https://cst3144-coursework-backened.onrender.com/images/${image}`;
       },
     // Input validation methods
     validateFirstName() {
