@@ -23,4 +23,18 @@
             <input type="text" v-model="searchTerm" placeholder="Search courses" />
         </div>
     </nav>
+     <!-- Sorting Controls -->
+     <div v-if="showCourse" class="sorting-controls">
+        <label for="sortKey">Sort by:</label>
+        <select id="sortKey" v-model="sortKey">
+            <option value="title">Title</option>
+            <option value="location">Location</option>
+            <option value="rating">Rating</option>
+            <option value="price">Price</option>
+        </select>
+        <button @click="toggleSortOrder">
+            Sort {{ sortOrder === 'asc' ? 'Descending' : 'Ascending' }}
+        </button>
+    </div>
+
 </body>
