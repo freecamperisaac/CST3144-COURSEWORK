@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Storefront</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Arena</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <h1>Welcome to Our Storefront</h1>
-    </header>
-    <main>
-        <h2>Available Categories</h2>
-        <ul>
-            <li>Math</li>
-            <li>Fashion</li>
-            <li>Art</li>
-            <li>Python</li>
-            <li>Health & Beauty</li>
-            <li>Basketball</li>
-            <li>Anime</li>
-            <li>Mechanics</li>
-            <li>Music & Instruments</li>
-            <li>Html & Css</li>
-        </ul>
-    </main>
+<div id="app">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h1 class="site-name" @click="goHome">Course Arena</h1>
+        <button v-if="cart.length > 0" class="checkout-button" @click="showCheckout">
+            {{ cartItemCount }}
+            <span class="fa-solid fa-cart-plus"></span> Checkout
+        </button>
+        <div v-if="showCourse" class="search-bar">
+            <input type="text" v-model="searchTerm" placeholder="Search courses" />
+        </div>
+    </nav>
 </body>
-</html>
