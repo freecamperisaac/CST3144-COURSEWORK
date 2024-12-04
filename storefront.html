@@ -36,5 +36,38 @@
             Sort {{ sortOrder === 'asc' ? 'Descending' : 'Ascending' }}
         </button>
     </div>
+    <main>
+        <!-- Course List -->
+        <div v-if="showCourse">
+            <div class="course-grid">
+                <!-- Display each course -->
+                <div v-for="course in filteredCourses" :key="course._id" class="course-item">
+                    <!-- Course Image -->
+                    <figure>
+                        <img :src="imageLink(course.image)" alt="Course Image" class="course-image"/>
+                    </figure>
+                    <h2>{{ course.title }}</h2>
+                    <p v-html="course.description"></p>
+                    <p>Location: {{ course.location }}</p>
+                    <p>Price: AED{{ course.price.toFixed(2) }}</p>
+                    <!-- Available Spaces -->
+                    <span v-if="spacesAvailable(course) > 0">
+                        Available Spaces: {{ spacesAvailable(course) }}
+                    </span>
+                    <p v-else class="error">No Available Space For This Course</p>
+                    <button class="add-to-cart" @click="addToCart(course)" :disabled="!canAddToCart(course)">
+                        {{ canAddToCart(course) ? 'Add to Cart' : 'Sold Out' }}
+                    </button>
+                    <!-- Course Rating -->
+                    <div class="rating">
+                        <span v-for="n in course.rating" class="star filled">★</span>
+                        <span v-for="n in 5 - course.rating" class="star unfilled">☆</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
 
 </body>
