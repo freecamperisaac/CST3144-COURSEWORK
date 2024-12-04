@@ -80,6 +80,39 @@
     <p><strong>Gift Option:</strong> {{ order.gift ? "Yes" : "No" }}</p>
     <button class="return-home" @click="goHome">Return to Home</button>
 </div>
+<!-- Checkout Section -->
+<div v-if="!showCourse && !showSummary" class="checkout-container">
+    <h2 class="text-center">Checkout</h2>
+
+    <!-- Empty Cart Prompt -->
+    <div v-if="cartItems.length === 0" class="text-center">
+        <p>Add items to the cart to checkout.</p>
+    </div>
+
+    <!-- Checkout Layout -->
+    <div v-else class="checkout-layout">
+        <!-- Left: Selected Items -->
+        <div class="order-summary">
+            <h3>Selected Items</h3>
+            <div v-for="course in cartItems" :key="course._id" class="cart-item">
+                <img :src="course.image" alt="Course Image" class="cart-item-img" />
+                <div class="cart-item-details">
+                    <p><strong>{{ course.title }}</strong></p>
+                    <p>Location: {{ course.location }}</p>
+                    <span v-if="spacesAvailable(course) > 0">
+                        Available Spaces: {{ spacesAvailable(course) }}
+                    </span>
+                    <p>AED {{ course.price.toFixed(2) }}</p>
+                    <div class="quantity-controls">
+                        <button @click="decreaseItem(course._id)">-</button>
+                        <span>{{ cartCount(course._id) }}</span>
+                        <button @click="increaseItem(course._id)">+</button>
+                        <button @click="removeItem(course._id)" class="remove-item">Remove</button>
+                    </div>
+                </div>
+            </div>
+            <h3>Total Price: {{ totalPrice.toFixed(2) }} AED</h3>
+        </div>
 
     </main>
 
