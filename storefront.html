@@ -44,7 +44,7 @@
                 <div v-for="course in filteredCourses" :key="course._id" class="course-item">
                     <!-- Course Image -->
                     <figure>
-                        <img :src="imageLink(course.image)" alt="Course Image" class="course-image"/>
+                        <img v-bind:src="imageLink(course.image)" alt="Course Image" class="course-image"/>
                     </figure>
                     <h2>{{ course.title }}</h2>
                     <p v-html="course.description"></p>
