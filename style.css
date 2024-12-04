@@ -8,4 +8,41 @@
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   }
+  .sorting-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .sorting-controls label {
+    font-weight: bold;
+  }
+  
+  .sorting-controls select,
+  .sorting-controls button {
+    padding: 5px 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    cursor: pointer;
+  }
+  .site-name {
+    font-size: 1.5em;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .search-bar {
+    margin-right: 20px;
+  }
+  
+  .search-bar input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+  }
+  
   
