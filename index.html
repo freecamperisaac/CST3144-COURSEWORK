@@ -95,7 +95,7 @@
         <div class="order-summary">
             <h3>Selected Items</h3>
             <div v-for="course in cartItems" :key="course._id" class="cart-item">
-                <img :src="course.image" alt="Course Image" class="cart-item-img" />
+                <img :src="imageLink(course.image)" alt="Course Image" class="cart-item-img" />
                 <div class="cart-item-details">
                     <p><strong>{{ course.title }}</strong></p>
                     <p>Location: {{ course.location }}</p>
