@@ -171,7 +171,6 @@ var webStore = new Vue({
     }
   },
   
-
   // Initializes the cart by fetching data from the backend
   async initializeCart() {
     await this.fetchCart(); // Fetch the cart when the app is mounted
