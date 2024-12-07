@@ -276,8 +276,8 @@ var webStore = new Vue({
     },
   
   },
-  mounted() { // Fetch courses when the app is initialized
-    this.fetchCourses();
-    this.initializeCart();
+  async mounted() {
+    await this.fetchCourses();
+    await this.fetchCart();
   },
 });
