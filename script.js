@@ -205,9 +205,8 @@ var webStore = new Vue({
     goHome() {
       this.showCourse = true; //show the course list
       this.showSummary = false; //hide the summary
-      this.cart = []; //clear the cart
-      
     },
+    
     //sort courses
     changeSortKey(key) { //set the sort key
       this.sortKey = key;
