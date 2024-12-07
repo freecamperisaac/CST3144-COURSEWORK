@@ -121,7 +121,7 @@ var webStore = new Vue({
     addToCart(course) {
       if (this.cartCount(course._id) < course.availableInventory) {
         this.cart.push(course._id);
-        
+        this.updateCartStorage();
         this.showToast("Course Added to Cart");
       }
     },
@@ -155,7 +155,7 @@ var webStore = new Vue({
             this.cart = []; // Clear the cart
             this.showSummary = true;// Show the summary page
             this.showCourse = false;
-            
+            this.updateCartStorage(); // Updates storage
           }
         })
         .catch((err) => {
