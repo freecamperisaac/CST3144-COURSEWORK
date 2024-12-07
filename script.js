@@ -117,64 +117,14 @@ var webStore = new Vue({
         this.order.zip = "";
       }
     },
-      // Fetches the cart from the backend
-  async fetchCart() {
-    try {
-      const response = await fetch(`${BASE_URL}/cart`, { method: "GET" });
-      if (!response.ok) {
-        throw new Error("Failed to fetch cart");
+      // Adds a course to the cart
+    addToCart(course) {
+      if (this.cartCount(course._id) < course.availableInventory) {
+        this.cart.push(course._id);
+        
+        this.showToast("Course Added to Cart");
       }
-      this.cart = await response.json(); // Update cart with server data
-    } catch (error) {
-      console.error("Error fetching cart:", error);
-      this.toastMessage = "Failed to load cart.";
-      setTimeout(() => (this.toastMessage = null), 3000);
-    }
-  },
-
-  // Updates the cart on the backend
-  async updateCart() {
-    try {
-      const response = await fetch(`${BASE_URL}/cart`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(this.cart),
-      });
-      if (!response.ok) {
-        throw new Error("Failed to update cart");
-      }
-    } catch (error) {
-      console.error("Error updating cart:", error);
-      this.toastMessage = "Failed to update cart.";
-      setTimeout(() => (this.toastMessage = null), 3000);
-    }
-  },
-
-  // Adds an item to the cart
-  async addToCart(course) {
-    try {
-      const response = await fetch(`${BASE_URL}/cart`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: course._id, quantity: 1 }), // Send id and quantity
-      });
-      if (!response.ok) {
-        throw new Error("Failed to add item to cart");
-      }
-      const updatedCart = await response.json();
-      this.cart = updatedCart.items.map((item) => item.itemId); // Update cart with item IDs
-      this.showToast("Course Added to Cart");
-    } catch (error) {
-      console.error("Error adding to cart:", error);
-      this.toastMessage = "Failed to add item to cart.";
-      setTimeout(() => (this.toastMessage = null), 3000);
-    }
-  },
-  
-  // Initializes the cart by fetching data from the backend
-  async initializeCart() {
-    await this.fetchCart(); // Fetch the cart when the app is mounted
-},
+    },
     // Submit the order form
     submitForm() {
       if (!this.isOrderFormComplete) {
@@ -204,7 +154,8 @@ var webStore = new Vue({
             this.showCourse = true; // Reset the view to courses
             this.cart = []; // Clear the cart
             this.showSummary = true;// Show the summary page
-            this.showCourse = false; 
+            this.showCourse = false;
+            
           }
         })
         .catch((err) => {
@@ -219,6 +170,7 @@ var webStore = new Vue({
       if (this.toastTimeout) {
         clearTimeout(this.toastTimeout);
       }
+
       this.toastTimeout = setTimeout(() => {
         this.toastMessage = null;
       }, 3000);
@@ -236,18 +188,22 @@ var webStore = new Vue({
     increaseItem(id) {
       const course = this.courses.find((course) => course._id === id);
       if (this.cartCount(id) < course.availableInventory) {
-        this.cart.push(id); 
+        this.cart.push(id);
+        this.updateCartStorage();
       }
     },
 
     decreaseItem(id) {
       const index = this.cart.indexOf(id);
       if (index !== -1) {
-        this.cart.splice(index, 1);  
+        this.cart.splice(index, 1);
+        this.updateCartStorage();
       }
     },
   
-   
+    updateCartStorage() {
+      localStorage.setItem("cart", JSON.stringify(this.cart));
+    },
     //navigation methods
     showCheckout() {
       this.showSummary = false; //Hide the summary
@@ -256,8 +212,9 @@ var webStore = new Vue({
     goHome() {
       this.showCourse = true; //show the course list
       this.showSummary = false; //hide the summary
+      this.cart = []; //clear the cart
+      this.updateCartStorage(); //update local storage
     },
-    
     //sort courses
     changeSortKey(key) { //set the sort key
       this.sortKey = key;
@@ -269,14 +226,13 @@ var webStore = new Vue({
       const index = this.cart.indexOf(id);
       if (index !== -1) {
         this.cart.splice(index, 1); //Remove the item from the cart
-       
+        this.updateCartStorage(); //update the local storage
         this.showToast("Item removed from cart"); 
       }
     },
   
   },
-  async mounted() {
-    await this.fetchCourses();
-    await this.fetchCart();
+  mounted() { // Fetch courses when the app is initialized
+    this.fetchCourses();
   },
 });
