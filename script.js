@@ -120,8 +120,7 @@ var webStore = new Vue({
       // Adds a course to the cart
     addToCart(course) {
       if (this.cartCount(course._id) < course.availableInventory) {
-        this.cart.push(course._id);
-        
+        this.cart.push(course._id); 
         this.showToast("Course Added to Cart");
       }
     },
@@ -154,8 +153,7 @@ var webStore = new Vue({
             this.showCourse = true; // Reset the view to courses
             this.cart = []; // Clear the cart
             this.showSummary = true;// Show the summary page
-            this.showCourse = false;
-            
+            this.showCourse = false; 
           }
         })
         .catch((err) => {
@@ -170,7 +168,6 @@ var webStore = new Vue({
       if (this.toastTimeout) {
         clearTimeout(this.toastTimeout);
       }
-
       this.toastTimeout = setTimeout(() => {
         this.toastMessage = null;
       }, 3000);
@@ -188,16 +185,14 @@ var webStore = new Vue({
     increaseItem(id) {
       const course = this.courses.find((course) => course._id === id);
       if (this.cartCount(id) < course.availableInventory) {
-        this.cart.push(id);
-        
+        this.cart.push(id); 
       }
     },
 
     decreaseItem(id) {
       const index = this.cart.indexOf(id);
       if (index !== -1) {
-        this.cart.splice(index, 1);
-        
+        this.cart.splice(index, 1);  
       }
     },
   
