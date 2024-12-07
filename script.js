@@ -153,8 +153,7 @@ var webStore = new Vue({
             this.showCourse = true; // Reset the view to courses
             this.cart = []; // Clear the cart
             this.showSummary = true;// Show the summary page
-            this.showCourse = false;
-            
+            this.showCourse = false; 
           }
         })
         .catch((err) => {
@@ -165,7 +164,6 @@ var webStore = new Vue({
     // Display a temporary toast notification
     showToast(message) {
       this.toastMessage = message;
-
       if (this.toastTimeout) {
         clearTimeout(this.toastTimeout);
       }
@@ -210,7 +208,6 @@ var webStore = new Vue({
       this.showCourse = true; //show the course list
       this.showSummary = false; //hide the summary
       this.cart = []; //clear the cart
-      
     },
     //sort courses
     changeSortKey(key) { //set the sort key
@@ -227,7 +224,6 @@ var webStore = new Vue({
         this.showToast("Item removed from cart"); 
       }
     },
-  
   },
   mounted() { // Fetch courses when the app is initialized
     this.fetchCourses();
