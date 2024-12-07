@@ -152,25 +152,25 @@ var webStore = new Vue({
 
   // Adds an item to the cart
   async addToCart(course) {
-    if (this.cartCount(course._id) < course.availableInventory) {
-      try {
-        const response = await fetch(`${BASE_URL}/cart`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id: course._id }),
-        });
-        if (!response.ok) {
-          throw new Error("Failed to add item to cart");
-        }
-        this.cart = await response.json(); // Update cart with the latest data
-        this.showToast("Course Added to Cart");
-      } catch (error) {
-        console.error("Error adding to cart:", error);
-        this.toastMessage = "Failed to add item to cart.";
-        setTimeout(() => (this.toastMessage = null), 3000);
+    try {
+      const response = await fetch(`${BASE_URL}/cart`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: course._id, quantity: 1 }), // Send id and quantity
+      });
+      if (!response.ok) {
+        throw new Error("Failed to add item to cart");
       }
+      const updatedCart = await response.json();
+      this.cart = updatedCart.items.map((item) => item.itemId); // Update cart with item IDs
+      this.showToast("Course Added to Cart");
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      this.toastMessage = "Failed to add item to cart.";
+      setTimeout(() => (this.toastMessage = null), 3000);
     }
   },
+  
 
   // Initializes the cart by fetching data from the backend
   async initializeCart() {
