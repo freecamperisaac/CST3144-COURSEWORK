@@ -84,6 +84,7 @@ var webStore = new Vue({
       try {
         const response = await fetch(`${BASE_URL}/collection/courses`);
         const data = await response.json();
+        console.log("Courses fetched:", data);
         this.courses = data;
       } catch (error) {
         console.error("Error fetching courses:", error);
@@ -128,6 +129,7 @@ var webStore = new Vue({
     // Submit the order form
     submitForm() {
       if (!this.isOrderFormComplete) {
+        console.log("Order submission failed: Incomplete form");
         alert("Please fill in all required fields.");
         return;
       }
