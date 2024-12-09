@@ -18,12 +18,12 @@ var webStore = new Vue({
       gift: false,
     },
     courses: [],// List of courses fetched from the backend
-    cart:[], // Array of course IDs added to the cart
+    cart: [], // Array of course IDs added to the cart
     emirates: {
-        AD: 'Abu Dhabi',
-        DBX: 'Dubai',
-        SHA: 'Sharjah',
-        RAK: 'Ras Al Khaimah'
+      AD: 'Abu Dhabi',
+      DBX: 'Dubai',
+      SHA: 'Sharjah',
+      RAK: 'Ras Al Khaimah'
     },
     searchTerm: "",
     sortKey: "", // Default sorting by title
@@ -63,7 +63,7 @@ var webStore = new Vue({
         0
       );
     },
-      // Check if the order form is fully filled out
+    // Check if the order form is fully filled out
     isOrderFormComplete() {
       const { firstName, lastName, phoneNumber, address, Town, emirate, zip } =
         this.order;
@@ -94,7 +94,7 @@ var webStore = new Vue({
     },
     imageLink(image) {
       return `https://cst3144-coursework-backened.onrender.com/images/${image}`;
-      },
+    },
     // Input validation methods
     validateFirstName() {
       if (!/^[a-zA-Z\s]+$/.test(this.order.firstName))
@@ -118,11 +118,11 @@ var webStore = new Vue({
         this.order.zip = "";
       }
     },
-      // Adds a course to the cart
+    // Adds a course to the cart
     addToCart(course) {
       if (this.cartCount(course._id) < course.availableInventory) {
         this.cart.push(course._id);
-        
+
         this.showToast("Course Added to Cart");
       }
     },
@@ -157,7 +157,7 @@ var webStore = new Vue({
             this.cart = []; // Clear the cart
             this.showSummary = true;// Show the summary page
             this.showCourse = false;
-            
+
           }
         })
         .catch((err) => {
@@ -191,7 +191,7 @@ var webStore = new Vue({
       const course = this.courses.find((course) => course._id === id);
       if (this.cartCount(id) < course.availableInventory) {
         this.cart.push(id);
-        
+
       }
     },
 
@@ -199,11 +199,14 @@ var webStore = new Vue({
       const index = this.cart.indexOf(id);
       if (index !== -1) {
         this.cart.splice(index, 1);
-        
+
       }
     },
-  
-   
+
+    toggleCheckout() {
+      this.showCourse = !this.showCourse; // Toggle between curriculums and checkout
+    },
+
     //navigation methods
     showCheckout() {
       this.showSummary = false; //Hide the summary
@@ -213,7 +216,7 @@ var webStore = new Vue({
       this.showCourse = true; //show the course list
       this.showSummary = false; //hide the summary
       this.cart = []; //clear the cart
-      
+
     },
     //sort courses
     changeSortKey(key) { //set the sort key
@@ -226,11 +229,11 @@ var webStore = new Vue({
       const index = this.cart.indexOf(id);
       if (index !== -1) {
         this.cart.splice(index, 1); //Remove the item from the cart
-        
-        this.showToast("Item removed from cart"); 
+
+        this.showToast("Item removed from cart");
       }
     },
-  
+
   },
   mounted() { // Fetch courses when the app is initialized
     this.fetchCourses();
