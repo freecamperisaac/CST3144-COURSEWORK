@@ -16,7 +16,8 @@
     <nav class="navbar">
         <h1 class="site-name" @click="goHome">Course Arena</h1>
         <button v-if="cart.length > 0" class="checkout-button" v-on:click="toggleCheckout">
-            <span class="fa-solid fa-cart-plus"></span> {{ showCourse ? 'Checkout' : 'Courses' }} ({{ cartItemCount }})
+            {{ cartItemCount }}
+            <span class="fa-solid fa-cart-plus"></span> {{ showCourse ? 'Checkout' : 'Courses' }}
         </button>
         <div v-if="showCourse" class="search-bar">
             <input type="text" v-model="searchTerm" placeholder="Search courses" />
